@@ -1,0 +1,33 @@
+import time
+
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()  # 记录开始时间
+        result = func(*args, **kwargs)  # 调用被装饰的函数
+        end_time = time.time()  # 记录结束时间
+        execution_time = end_time - start_time  # 计算执行时间
+        print(f"Время выполнения функции '{func.__name__}': {execution_time:.6f} секунд")
+        return result
+    return wrapper
+
+@timing_decorator
+def add_numbers(a, b):
+    result = a + b
+    print(f"Результат сложения: {result}")
+    return result
+
+@timing_decorator
+def read_and_write_numbers(input_file, output_file):
+    with open(input_file, 'r') as f:
+        a, b = map(int, f.readline().strip().split())
+    result = a + b
+    with open(output_file, 'w') as f:
+        f.write(str(result))
+    print(f"Результат записи в файл: {result}")
+
+# 测试 add_numbers 函数
+add_numbers(3, 5)
+
+# 测试 read_and_write_numbers 函数
+# 请确保在运行之前，input.txt 文件存在并包含两个整数，例如 "3 5"
+read_and_write_numbers('input.txt', 'output.txt')
