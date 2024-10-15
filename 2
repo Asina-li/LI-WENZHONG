@@ -1,0 +1,20 @@
+def filter_strings(filter_func, strings):
+    return list(filter(filter_func, strings))
+
+
+string_array = ["apple", "banana", "cherry", "date", "fig", "grape", "kiwi", "a peach", "orange"]
+
+
+filter_no_spaces = lambda s: ' ' not in s
+result_no_spaces = filter_strings(filter_no_spaces, string_array)
+print("Исключить строки с пробелами:", result_no_spaces)
+
+
+filter_no_a = lambda s: not s.startswith('a')
+result_no_a = filter_strings(filter_no_a, string_array)
+print("Исключить строки, начинающиеся с буквы 'a':", result_no_a)
+
+
+filter_length_less_than_5 = lambda s: len(s) >= 5
+result_length = filter_strings(filter_length_less_than_5, string_array)
+print("Исключить строки, длина которых меньше 5:", result_length)
