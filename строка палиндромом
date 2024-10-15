@@ -1,0 +1,9 @@
+def palindrome(s):
+    s = s.replace(" ", "").lower()
+    return s == s[::-1]
+
+
+if palindrome(test):
+    print(f'"{test}" это число-палиндром')
+else:
+    print(f'"{test}" Не палиндром。')
