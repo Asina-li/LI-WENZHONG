@@ -1,0 +1,57 @@
+class Person:
+    def __init__(self, full_name, age):
+        self.full_name = full_name
+        self.age = age
+
+    def display_info(self):
+        return f"ФИО: {self.full_name}, Возраст: {self.age}"
+
+
+class Student(Person):
+    def __init__(self, full_name, age, group_number, average_grade):
+        super().__init__(full_name, age)
+        self.group_number = group_number
+        self.average_grade = average_grade
+
+    def scholarship_amount(self):
+        if self.average_grade == 5:
+            return 6000
+        elif self.average_grade < 5:
+            return 4000
+        else:
+            return 0
+
+    def compare_scholarship(self, other):
+        if self.scholarship_amount() > other.scholarship_amount():
+            return "больше"
+        elif self.scholarship_amount() < other.scholarship_amount():
+            return "меньше"
+        else:
+            return "равно"
+
+
+class Postgraduate(Student):
+    def __init__(self, full_name, age, group_number, average_grade, research_title):
+        super().__init__(full_name, age, group_number, average_grade)
+        self.research_title = research_title
+
+    def scholarship_amount(self):
+        if self.average_grade == 5:
+            return 8000
+        elif self.average_grade < 5:
+            return 6000
+        else:
+            return 0
+
+
+# Пример использования
+student = Student("Иванов Иван Иванович", 20, "101", 4.5)
+postgraduate = Postgraduate("Петров Петр Петрович", 25, "201", 5, "Исследование в области ИТ")
+
+print(student.display_info())
+print("Размер стипендии студента:", student.scholarship_amount())
+print(postgraduate.display_info())
+print("Размер стипендии аспиранта:", postgraduate.scholarship_amount())
+
+# Сравнение стипендий
+print("Стипендия студента", student.compare_scholarship(postgraduate), "стипендии аспиранта.")
